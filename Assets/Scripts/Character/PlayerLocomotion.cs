@@ -49,5 +49,5 @@ public class PlayerLocomotion
     public void Enable() => Enabled = true;
     public void Disable() => Enabled = false;
 
-    private float GetMoveSpeed() => 5;
+    private float GetMoveSpeed() => GameSettings.PlayerMoveSpeed;
 }

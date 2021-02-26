@@ -13,4 +13,9 @@ public class PlayerAvatar : CharacterAvatar
 
     private void Update()
         => Player.Update();
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+        => Player.OnDrawGizmos();
+#endif
 }

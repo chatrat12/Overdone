@@ -34,7 +34,8 @@ public class PlayerLocomotion
 
     public void Update()
     {
-        Debug.Log(_moveDirection);
+        if (_moveDirection.magnitude > 0.1f)
+            _rigidbody.rotation = Quaternion.RotateTowards(_rigidbody.rotation, Quaternion.LookRotation(_moveDirection), 540 * Time.deltaTime);
         _rigidbody.velocity = _moveDirection * GetMoveSpeed();
         _moveDirection = Vector3.zero;
     }

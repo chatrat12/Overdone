@@ -3,6 +3,7 @@
 public class InteractableVeggieCrate : InteractableObject
 {
     private Animator _animator;
+    [SerializeField] private VeggieModel _veggieModel;
 
     private void Awake()
     {
@@ -11,6 +12,11 @@ public class InteractableVeggieCrate : InteractableObject
 
     public override void Interact(PlayerCharacter player)
     {
-        _animator.SetTrigger("Interact");
+        if(!player.Hand.HasItem)
+        {
+            var veggie = Instantiate(_veggieModel);
+            player.Hand.PlaceItem(veggie);
+            _animator.SetTrigger("Interact");
+        }
     }
 }

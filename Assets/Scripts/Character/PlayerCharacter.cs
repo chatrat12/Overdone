@@ -6,6 +6,7 @@ public class PlayerCharacter : Character
     public PlayerInput Input { get; private set; }
     public PlayerLocomotion Locomotion { get; private set; }
     public PlayerInteractDetection InteractionDetection { get; private set; }
+    public PlayerHand Hand { get; private set; }
 
     public PlayerCharacter(PlayerID id, CharacterAvatar avatar) : base(avatar)
     {
@@ -13,6 +14,7 @@ public class PlayerCharacter : Character
         Input = new PlayerInput(this);
         Locomotion = new PlayerLocomotion(this);
         InteractionDetection = new PlayerInteractDetection(this);
+        Hand = avatar.GetComponentInChildren<PlayerHand>();
     }
 
     public void Update()

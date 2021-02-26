@@ -31,6 +31,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6904d602a152eeb4780dee8a2f01fe2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemHolder: {fileID: 5666378155055269568}
 --- !u!1 &915572709322950279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1738,6 +1739,11 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5338419126674919855, guid: e4b7fddf0277a1a4cac4824e034e9616,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15625
+      objectReference: {fileID: 0}
     - target: {fileID: 5367688101248200308, guid: e4b7fddf0277a1a4cac4824e034e9616,
         type: 3}
       propertyPath: m_Mesh
@@ -1805,6 +1811,12 @@ GameObject:
 --- !u!4 &861181911742839496 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1100377366698012071, guid: e4b7fddf0277a1a4cac4824e034e9616,
+    type: 3}
+  m_PrefabInstance: {fileID: 339699616511842159}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5666378155055269568 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5338419126674919855, guid: e4b7fddf0277a1a4cac4824e034e9616,
     type: 3}
   m_PrefabInstance: {fileID: 339699616511842159}
   m_PrefabAsset: {fileID: 0}

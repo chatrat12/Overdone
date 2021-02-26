@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-// Camera controller that can track multiple objects.
+// Camera controller that can track multiple objects        e.
 public class CameraController : MonoBehaviour
 {
     public IEnumerable<Transform> ObjectToTrack { get; set; } = null;

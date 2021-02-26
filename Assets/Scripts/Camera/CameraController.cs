@@ -88,6 +88,9 @@ public class CameraController : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
+        if (ObjectToTrack == null || !ObjectToTrack.Any())
+            return;
+
         // Draw bounds of tracked object for debugging purposes
         var bounds = GetBounds();
         Gizmos.color = Color.cyan;

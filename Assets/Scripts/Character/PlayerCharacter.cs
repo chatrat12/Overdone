@@ -21,14 +21,15 @@ public class PlayerCharacter : Character
         Locomotion.Update();
         InteractionDetection.Update();
 
-        if (InteractionDetection.AvailableInteraction != null)
-            Debug.Log(InteractionDetection.AvailableInteraction);
+        if (Input.Interact && InteractionDetection.AvailableInteraction != null)
+            InteractionDetection.AvailableInteraction.Interact(this);
     }
 
 #if UNITY_EDITOR
     public void OnDrawGizmos()
     {
-        InteractionDetection.OnDrawGizmos();
+        if (UnityEditor.EditorApplication.isPlaying)
+            InteractionDetection.OnDrawGizmos();
     }
 #endif
 

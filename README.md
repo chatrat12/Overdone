@@ -6,6 +6,15 @@ Demo project for Tentworks Interactive. I ended up cloning some mechanics from O
 
 ![Gameplay](https://github.com/chatrat12/Overdone/blob/main/Screenshots/Gameplay.png?raw=true "Gameplay")
 
+#Controls
+## Player One
+- Move: WASD
+- Interact: Left Ctrl
+
+## Player Two
+- Move: Arrow Keys
+- Interact: Numpad 0
+
 # Things Left to Do
 
 ## Refactoring
@@ -18,6 +27,7 @@ Spent a few days on this. I didn't get around to a few things
 - High Scores
 - Power Ups
 - Balance wait times and game time
+- In game documentation of controls
 ## Readability
 Some things are not as readable as I would like. 
 - It can be hard to read what is on a plate. 

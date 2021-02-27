@@ -10,6 +10,16 @@ public class SaladDish : ScriptableObject
     public bool HasTomato => HasVeggie(VeggieType.Tomato);
     public bool HasMushroom => HasVeggie(VeggieType.Mushroom);
 
+    public float WaitTime
+    {
+        get
+        {
+            var result = GameSettings.OrderTime;
+            result += _veggies.Length - 1 * GameSettings.OrderTimeIngrediantBonus;
+            return result;
+        }
+    }
+
     [SerializeField] private VeggieType[] _veggies;
 
     public bool HasVeggie(VeggieType veggie)

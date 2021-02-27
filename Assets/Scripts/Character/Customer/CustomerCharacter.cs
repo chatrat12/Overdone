@@ -12,9 +12,9 @@ public class CustomerCharacter : Character
         OrderUI = avatar.transform.parent.GetComponentInChildren<OrderingUI>();
     }
 
-    public void PlaceOrder(SaladDish dish, float time)
+    public void PlaceOrder(SaladDish dish)
     {
-        Order = new CustomerOrder(dish, time);
+        Order = new CustomerOrder(dish);
         OrderUI.Order = Order;
     }
 
@@ -27,5 +27,11 @@ public class CustomerCharacter : Character
     public void Update()
     {
         Order?.DecrementTime(Time.deltaTime);
+    }
+
+    internal void Reset()
+    {
+        Locomotion.Reset();
+        RemoveOrder();
     }
 }

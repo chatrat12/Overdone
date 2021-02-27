@@ -41,6 +41,12 @@ public class InteractableCuttingStation : InteractableCounterTop
     public override bool CanPlaceItem(ItemModel item)
         => base.CanPlaceItem(item) && item is VeggieModel veggie && !veggie.Sliced;
 
+    public override void Reset()
+    {
+        _cutting = false;
+        base.Reset();
+    }
+
     // Animation Event: Finished Cutting
     private void AnimEvent_FinishedCutting() => _cutting = false;
 }

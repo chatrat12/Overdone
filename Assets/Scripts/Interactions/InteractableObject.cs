@@ -2,7 +2,10 @@
 
 public abstract class InteractableObject : MonoBehaviour
 {
-    public virtual string InteractMessage => "Interact";
+
+    protected virtual void Start() => InteractableManager.Register(this);
     public abstract void Interact(PlayerCharacter player);
     public virtual bool CanInteract(PlayerCharacter player) => true;
+
+    public virtual void Reset() { }
 }

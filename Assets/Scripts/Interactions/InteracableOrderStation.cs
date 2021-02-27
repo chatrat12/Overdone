@@ -10,8 +10,9 @@ public class InteracableOrderStation : InteractableObject
     private CustomerCharacter _customer => _customerAvatar.Customer;
     private Vector3 _customerStartPosition;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _customerStartPosition = _customerAvatar.transform.position;
     }
 
@@ -19,9 +20,12 @@ public class InteracableOrderStation : InteractableObject
     {
         if (State == OrderStationState.WaitingForOrder)
         {
+            // Time has expired
             if (!_customer.Order.OrderComplete && _customer.Order.TimeExpired)
             {
-                // Remove points
+                // Penalize Players
+                _customer.Order.PenalizePlayers();
+                // Leave
                 CustomerLeave();
             }
         }
@@ -40,7 +44,7 @@ public class InteracableOrderStation : InteractableObject
         }
 
         var dish = GameSettings.SaladDishes[Random.Range(0, GameSettings.SaladDishes.Length)];
-        _customer.PlaceOrder(dish, GameSettings.OrderTime);
+        _customer.PlaceOrder(dish);
         State = OrderStationState.WaitingForOrder;
     }
 
@@ -61,12 +65,19 @@ public class InteracableOrderStation : InteractableObject
         // Does player have item
         if (player.Hand.HasItem)
         {
-            if (_customer.Order.SubmitOrder(player.Hand.RemoveItem()))
+            if (_customer.Order.SubmitOrder(player.Hand.RemoveItem(), player))
             {
                 // Add points;
                 CustomerLeave();
             }
         }
+    }
+
+    public override void Reset()
+    {
+        State = OrderStationState.Empty;
+        _customer.Reset();
+        base.Reset();
     }
 
     public enum OrderStationState

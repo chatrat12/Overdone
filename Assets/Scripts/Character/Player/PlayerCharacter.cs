@@ -31,6 +31,7 @@ public class PlayerCharacter : Character
         Time.Reset();
         Hand.Reset();
         Locomotion.Reset();
+        Time.Start();
     }
 
     public void Update()
@@ -43,7 +44,8 @@ public class PlayerCharacter : Character
 
     private void DoInput()
     {
-        if (Application.isFocused && !Time.Expired)
+        var playing = GameController.Instance.State == GameController.StateType.Playing;
+        if (playing && Application.isFocused && !Time.Expired)
         {
             Locomotion.Move(Input.MoveVector);
             if (Input.Interact && InteractionDetection.AvailableInteraction != null)

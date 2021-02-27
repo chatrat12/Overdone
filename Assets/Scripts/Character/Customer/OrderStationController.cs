@@ -15,11 +15,16 @@ public class OrderStationController : MonoBehaviour
         _orderStations = GetComponentsInChildren<InteracableOrderStation>();
     }
 
-    private async void OnEnable()
+    private void OnEnable()
     {
-        await Await.NextUpdate();
         SendCustomer(true);
         UpdateNextCustomerTime();
+    }
+
+    private void OnDisable()
+    {
+        foreach (var station in _orderStations)
+            station.Customer.Locomotion.Stop();
     }
 
     private void Update()

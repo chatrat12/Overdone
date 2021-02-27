@@ -39,11 +39,13 @@ public class CustomerLocomotion
         _cancelWalk = false;
     }
 
-    public void Reset()
+    public async void Reset()
     {
         Stop();
         _customer.Avatar.transform.position = _startPosition;
         _customer.Avatar.transform.rotation = _startRotation;
+        await Await.NextLateUpdate();
+        _cancelWalk = false;
     }
 
     public void Stop() => _cancelWalk = true;

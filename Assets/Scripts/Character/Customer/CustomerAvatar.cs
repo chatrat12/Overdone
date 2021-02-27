@@ -7,5 +7,11 @@
         Customer = new CustomerCharacter(this);
     }
 
+    private void Start()
+    {
+        // Hide
+        gameObject.SetActive(false);
+    }
+
     private void Update() => Customer.Update();
 }

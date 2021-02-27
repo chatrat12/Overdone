@@ -61,6 +61,6 @@ public class InteractableCounterTop : InteractableObject
     public override void Reset()
     {
         if (CurrentItem != null)
-            Destroy(RemoveItem());
+            Destroy(RemoveItem().gameObject);
     }
 }

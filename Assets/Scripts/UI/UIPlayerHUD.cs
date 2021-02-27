@@ -10,10 +10,11 @@ public class UIPlayerHUD : MonoBehaviour
 
     private void Update()
     {
-        if(Player != null)
+        if (Player != null)
         {
             _scoreText.text = Player.Score.Value.ToString();
-            _timeText.text = Player.Time.ToString();
+            if (_timeText != null)
+                _timeText.text = Player.Time.ToString();
         }
     }
 

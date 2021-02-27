@@ -3,11 +3,11 @@
 public class InteracableOrderStation : InteractableObject
 {
     public OrderStationState State { get; private set; } = OrderStationState.Empty;
+    public CustomerCharacter Customer => _customerAvatar.Customer;
 
     [SerializeField] private CustomerAvatar _customerAvatar;
     [SerializeField] private Transform _customerOrderPosition;
 
-    private CustomerCharacter _customer => _customerAvatar.Customer;
     private Vector3 _customerStartPosition;
 
     protected override void Start()
@@ -21,10 +21,10 @@ public class InteracableOrderStation : InteractableObject
         if (State == OrderStationState.WaitingForOrder)
         {
             // Time has expired
-            if (!_customer.Order.OrderComplete && _customer.Order.TimeExpired)
+            if (!Customer.Order.OrderComplete && Customer.Order.TimeExpired)
             {
                 // Penalize Players
-                _customer.Order.PenalizePlayers();
+                Customer.Order.PenalizePlayers();
                 // Leave
                 CustomerLeave();
             }
@@ -35,24 +35,30 @@ public class InteracableOrderStation : InteractableObject
     {
         if (State != OrderStationState.Empty) return;
         State = OrderStationState.Entering;
+        // Make customer visible
+        Customer.Avatar.gameObject.SetActive(true);
         if (!teleport)
-            await _customer.Locomotion.MoveTo(_customerOrderPosition.position);
+            await Customer.Locomotion.MoveTo(_customerOrderPosition.position);
         else
         {
             _customerAvatar.transform.position = _customerOrderPosition.position;
             _customerAvatar.transform.rotation = _customerOrderPosition.rotation;
         }
 
-        var dish = GameSettings.SaladDishes[Random.Range(0, GameSettings.SaladDishes.Length)];
-        _customer.PlaceOrder(dish);
-        State = OrderStationState.WaitingForOrder;
+        // Hack so order UI does not get updated after game over.
+        if (GameController.Instance.State == GameController.StateType.Playing)
+        {
+            var dish = GameSettings.SaladDishes[Random.Range(0, GameSettings.SaladDishes.Length)];
+            Customer.PlaceOrder(dish);
+            State = OrderStationState.WaitingForOrder;
+        }
     }
 
     public async void CustomerLeave()
     {
-        _customer.RemoveOrder();
+        Customer.RemoveOrder();
         State = OrderStationState.Leaving;
-        await _customer.Locomotion.MoveTo(_customerStartPosition);
+        await Customer.Locomotion.MoveTo(_customerStartPosition);
         State = OrderStationState.Empty;
     }
 
@@ -65,7 +71,7 @@ public class InteracableOrderStation : InteractableObject
         // Does player have item
         if (player.Hand.HasItem)
         {
-            if (_customer.Order.SubmitOrder(player.Hand.RemoveItem(), player))
+            if (Customer.Order.SubmitOrder(player.Hand.RemoveItem(), player))
             {
                 // Add points;
                 CustomerLeave();
@@ -76,7 +82,7 @@ public class InteracableOrderStation : InteractableObject
     public override void Reset()
     {
         State = OrderStationState.Empty;
-        _customer.Reset();
+        Customer.Reset();
         base.Reset();
     }
 

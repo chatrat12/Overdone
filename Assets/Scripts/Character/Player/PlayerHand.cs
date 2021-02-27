@@ -34,6 +34,6 @@ public class PlayerHand : MonoBehaviour
     public void Reset()
     {
         if (CurrentItem != null)
-            Destroy(RemoveItem());
+            Destroy(RemoveItem().gameObject);
     }
 }

@@ -26,7 +26,8 @@ public class CustomerCharacter : Character
 
     public void Update()
     {
-        Order?.DecrementTime(Time.deltaTime);
+        if (GameController.Instance.State == GameController.StateType.Playing)
+            Order?.DecrementTime(Time.deltaTime);
     }
 
     internal void Reset()

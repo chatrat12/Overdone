@@ -20,4 +20,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa20d7de8fd44ed4286a37ec8f83cc40, type: 2}
   - {fileID: 11400000, guid: f08afcd7862c6d9439cdf648fce6801e, type: 2}
   - {fileID: 11400000, guid: 9665eaf1340c84149bb9a744614f907f, type: 2}
-  _orderTime: 60
+  _orderTime: 40
+  _orderTimeIngrediantBonus: 10
+  _playTime: 10
+  _orderPoints: 20
+  _missedOrderPenalty: 5

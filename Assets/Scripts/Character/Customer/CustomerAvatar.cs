@@ -1,4 +1,6 @@
-﻿public class CustomerAvatar : CharacterAvatar
+﻿
+// Avatar representing a customer. This probably was not necessary.
+public class CustomerAvatar : CharacterAvatar
 {
     public CustomerCharacter Customer { get; private set; }
 

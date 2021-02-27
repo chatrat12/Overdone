@@ -44,6 +44,7 @@ public class PlayerCharacter : Character
 
     private void DoInput()
     {
+        // Only do input if game in progrss and window has focus.
         var playing = GameController.Instance.State == GameController.StateType.Playing;
         if (playing && Application.isFocused && !Time.Expired)
         {

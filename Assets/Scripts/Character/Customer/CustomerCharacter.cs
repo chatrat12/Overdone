@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+// Customer character
+// TODO: Factor out UI.
 public class CustomerCharacter : Character
 {
     public CustomerLocomotion Locomotion { get; private set; }

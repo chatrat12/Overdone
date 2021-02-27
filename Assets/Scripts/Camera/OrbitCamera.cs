@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// Simple orbit camera for title screen.
 public class OrbitCamera : MonoBehaviour
 {
     [SerializeField] float _distance = 10;

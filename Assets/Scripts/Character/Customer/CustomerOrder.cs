@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// Order placed by character.
 public class CustomerOrder
 {
     public SaladDish Dish { get; private set; }
@@ -12,6 +13,7 @@ public class CustomerOrder
     private bool _madAtPlayerOne = false;
     private bool _madAtPlayerTwo = false;
 
+    // Create new order
     public CustomerOrder(SaladDish dish)
     {
         Dish = dish;
@@ -35,10 +37,13 @@ public class CustomerOrder
         if (item is PlateModel plate)
             result = Dish.MatchesPlate(plate);
 
+        // Order correct
         if (result)
         {
             OrderComplete = true;
+            // Give player points
             player.Score.AddPoints(GameSettings.OrderPoints);
+            // TODO: Implement powerups
             if(TimeRemainingNormalized >= 0.7f)
             {
                 Debug.Log("Give power up");
@@ -46,6 +51,7 @@ public class CustomerOrder
         }
         else
         {
+            // Be mad at player if wrong item given
             if (player.ID == PlayerCharacter.PlayerID.One)
                 _madAtPlayerOne = true;
             else
@@ -59,6 +65,7 @@ public class CustomerOrder
 
     public void PenalizePlayers()
     {
+        // Penalize players for not getting order in time.
         GameController.Instance.PlayerOne.Score.RemovePoints(GameSettings.MissedOrderPenalty * (_madAtPlayerOne ? 2 : 1));
         GameController.Instance.PlayerTwo.Score.RemovePoints(GameSettings.MissedOrderPenalty * (_madAtPlayerTwo ? 2 : 1));
     }

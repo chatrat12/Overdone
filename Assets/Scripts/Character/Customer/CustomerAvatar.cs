@@ -6,4 +6,6 @@
     {
         Customer = new CustomerCharacter(this);
     }
+
+    private void Update() => Customer.Update();
 }

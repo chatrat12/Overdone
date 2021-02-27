@@ -14,4 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerMoveSpeed: 5
   _bonusSpeedMultiplier: 2
-  _customerMoveSpeed: 2
+  _customerMoveSpeed: 5
+  _saladDishes:
+  - {fileID: 11400000, guid: 4974a5ca36000d54f8a90183e5b4f47f, type: 2}
+  - {fileID: 11400000, guid: aa20d7de8fd44ed4286a37ec8f83cc40, type: 2}
+  - {fileID: 11400000, guid: f08afcd7862c6d9439cdf648fce6801e, type: 2}
+  - {fileID: 11400000, guid: 9665eaf1340c84149bb9a744614f907f, type: 2}
+  _orderTime: 60

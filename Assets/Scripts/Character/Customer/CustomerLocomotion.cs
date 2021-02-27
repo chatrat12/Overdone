@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CustomerLocomotion
 {
-    private const float STOPPING_DISTANCE = 0.01f;
+    private const float STOPPING_DISTANCE = 0.05f;
 
     private CustomerCharacter _customer;
 
@@ -26,7 +26,7 @@ public class CustomerLocomotion
             t.rotation = Quaternion.RotateTowards(t.rotation, targetRot, 540 * Time.deltaTime);
             return Vector3.Distance(t.position, position) < STOPPING_DISTANCE;
         });
-        t.position = position;
+        //t.position = position;
         t.rotation = Quaternion.LookRotation(endDirection);
     }
 }

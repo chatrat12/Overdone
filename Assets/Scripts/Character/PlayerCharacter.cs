@@ -19,12 +19,20 @@ public class PlayerCharacter : Character
 
     public void Update()
     {
-        Locomotion.Move(Input.MoveVector);
+        DoInput();
         Locomotion.Update();
         InteractionDetection.Update();
 
-        if (Input.Interact && InteractionDetection.AvailableInteraction != null)
-            InteractionDetection.AvailableInteraction.Interact(this);
+    }
+
+    private void DoInput()
+    {
+        if (Application.isFocused)
+        {
+            Locomotion.Move(Input.MoveVector);
+            if (Input.Interact && InteractionDetection.AvailableInteraction != null)
+                InteractionDetection.AvailableInteraction.Interact(this);
+        }
     }
 
 #if UNITY_EDITOR

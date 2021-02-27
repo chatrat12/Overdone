@@ -13,9 +13,11 @@ public class OrderingUI : MonoBehaviour
                 Clear();
             else
             {
-                _lettuceIcon.gameObject.SetActive(value.Veggies.Contains(VeggieType.Lettuce));
-                _tomatoIcon.gameObject.SetActive(value.Veggies.Contains(VeggieType.Tomato));
-                _mushroomIcon.gameObject.SetActive(value.Veggies.Contains(VeggieType.Mushroom));
+                _lettuceIcon.gameObject.SetActive(value.Dish.HasLettuce);
+                _tomatoIcon.gameObject.SetActive(value.Dish.HasTomato);
+                _mushroomIcon.gameObject.SetActive(value.Dish.HasMushroom);
+                _timeBar.gameObject.SetActive(true);
+                UpdateBar();
             }
             _order = value;
         }
@@ -24,6 +26,7 @@ public class OrderingUI : MonoBehaviour
     [SerializeField] private Image _lettuceIcon;
     [SerializeField] private Image _tomatoIcon;
     [SerializeField] private Image _mushroomIcon;
+    [SerializeField] private UIProgressBar _timeBar;
 
     private CustomerOrder _order;
 
@@ -32,10 +35,22 @@ public class OrderingUI : MonoBehaviour
         Clear();
     }
 
+    private void Update()
+    {
+        UpdateBar();
+    }
+
     private void Clear()
     {
         _lettuceIcon.gameObject.SetActive(false);
         _tomatoIcon.gameObject.SetActive(false);
         _mushroomIcon.gameObject.SetActive(false);
+        _timeBar.gameObject.SetActive(false);
+    }
+
+    private void UpdateBar()
+    {
+        if(_order != null)
+            _timeBar.Value = _order.TimeRemainingNormalized;
     }
 }

@@ -6,7 +6,7 @@ Demo project for Tentworks Interactive. I ended up cloning some mechanics from O
 
 ![Gameplay](https://github.com/chatrat12/Overdone/blob/main/Screenshots/Gameplay.png?raw=true "Gameplay")
 
-#Controls
+# Controls
 ## Player One
 - Move: WASD
 - Interact: Left Ctrl

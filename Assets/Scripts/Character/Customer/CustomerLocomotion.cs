@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CustomerLocomotion
 {
-    private const float STOPPING_DISTANCE = 0.1f;
+    private const float STOPPING_DISTANCE = 0.01f;
 
     private CustomerCharacter _customer;
 
     public CustomerLocomotion(CustomerCharacter customer)
     {
-
+        _customer = customer;
     }
 
     public async Task MoveTo(Vector3 position)
@@ -22,11 +22,11 @@ public class CustomerLocomotion
         {
             var dir = (position - t.position).normalized;
             t.position += dir * Time.deltaTime * GameSettings.CustomerMoveSpeed;
-            var targetRot = Quaternion.FromToRotation(Vector3.forward, dir);
+            var targetRot = Quaternion.LookRotation(dir);
             t.rotation = Quaternion.RotateTowards(t.rotation, targetRot, 540 * Time.deltaTime);
             return Vector3.Distance(t.position, position) < STOPPING_DISTANCE;
         });
         t.position = position;
-        t.rotation = Quaternion.FromToRotation(Vector3.forward, endDirection);
+        t.rotation = Quaternion.LookRotation(endDirection);
     }
 }
